@@ -2,7 +2,7 @@
 
 # If you have already installed the customized vim environment,
 # this setup is interrupted here.
-[ `which vim.nox` ] && [ `which git` ] && [ -d ~/.vim/bundle/neobundle.vim ] && exit 0
+[ `which vim` ] && [ `which git` ] && [ -d ~/.vim/bundle/neobundle.vim ] && exit 0
 
 # Determine package manager
 INSTALLER=""
@@ -14,8 +14,8 @@ elif [ `uname` = "Darwin" ]; then
     [ `which port` ] && INSTALLER="port"
 fi
 [ -n "$INSTALLER" ] || exit 1
-# Install full version of Vim and Git
-sudo $INSTALLER install vim-nox git || exit 1
+# Install Vim and Git
+sudo $INSTALLER install vim git || exit 1
 
 # Copy customized .vimrc to your home directory
 cp -i .vimrc ~ || exit 1
