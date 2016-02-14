@@ -4,8 +4,18 @@
 # this setup is interrupted here.
 [ `which vim.nox` ] && [ `which git` ] && [ -d ~/.vim/bundle/neobundle.vim ] && exit 0
 
+# Determine package manager
+INSTALLER=""
+if [ `uname` = "Linux" ]; then
+    [ `which apt-get` ] && INSTALLER="apt-get"
+    [ `which yum` ] && INSTALLER="yum"
+elif [ `uname` = "Darwin" ]; then
+    [ `which brew` ] && INSTALLER="brew"
+    [ `which port` ] && INSTALLER="port"
+fi
+[ -n "$INSTALLER" ] || exit 1
 # Install full version of Vim and Git
-sudo apt-get install vim-nox git || exit 1
+sudo $INSTALLER install vim-nox git || exit 1
 
 # Copy customized .vimrc to your home directory
 cp -i .vimrc ~ || exit 1
