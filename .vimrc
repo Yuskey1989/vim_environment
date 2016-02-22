@@ -90,6 +90,10 @@ set hidden
 set wildmenu
 set backspace=indent,eol,start
 
+if has("path_extra")
+    set tags+=tags;/home,TAGS;/home
+endif
+
 vmap <C-c> :w !xsel -ib<CR><CR>
 
 " Plugins
