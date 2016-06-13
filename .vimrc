@@ -90,6 +90,21 @@ set hidden
 set wildmenu
 set backspace=indent,eol,start
 
+"括弧を自動補完
+inoremap {{ {}<LEFT>
+inoremap {<ENTER> {}<LEFT><CR><ESC><S-O>
+inoremap [[ []<LEFT>
+inoremap [<ENTER> []<LEFT><CR><ESC><S-O>
+inoremap (( ()<LEFT>
+inoremap (<ENTER> ()<LEFT><CR><ESC><S-O>
+inoremap "" ""<LEFT>
+inoremap '' ''<LEFT>
+vnoremap { "zdi^V{<C-R>z}<ESC>
+vnoremap [ "zdi^V[<C-R>z]<ESC>
+vnoremap ( "zdi^V(<C-R>z)<ESC>
+vnoremap " "zdi^V"<C-R>z^V"<ESC>
+vnoremap ' "zdi'<C-R>z'<ESC>
+
 if has("path_extra")
     set tags+=tags;/home,TAGS;/home
 endif
