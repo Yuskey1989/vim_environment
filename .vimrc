@@ -112,7 +112,7 @@ endif
 vmap <C-c> :w !xsel -ib<CR><CR>
 
 " Plugins
-" NeoBundle start
+" Dein start
 " Note: Skip initialization for vim-tiny or vim-small.
 if 0 | endif
 
@@ -120,33 +120,24 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 " Required:
-set runtimepath^=~/.vim/bundle/neobundle.vim/
+set runtimepath+=~/.vim/bundle/repos/github.com/Shougo/dein.vim
 
+"if dein#load_state(expand('~/.vim/bundle'))
 " Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+call dein#begin(expand('~/.vim/bundle'))
 
-" Let NeoBundle manage NeoBundle
+" Let Dein manage Dein
 " Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+call dein#add('/Shougo/dein.vim')
 
 " My Bundles here:
-" Refer to |:NeoBundle-examples|.
-" Note: You don't set neobundle setting in .gvimrc!
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc.vim', {
-\ 'build' : {
-\     'windows' : 'tools\\update-dll-mingw',
-\     'cygwin' : 'make -f make_cygwin.mak',
-\     'mac' : 'make',
-\     'linux' : 'make',
-\     'unix' : 'gmake',
-\    },
-\ }
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+call dein#add('Shougo/unite.vim')
 
-NeoBundle 'Shougo/context_filetype.vim'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neoinclude.vim'
-NeoBundle 'Shougo/neopairs.vim'
+call dein#add('Shougo/context_filetype.vim')
+call dein#add('Shougo/neocomplete.vim')
+call dein#add('Shougo/neoinclude.vim')
+call dein#add('Shougo/neopairs.vim')
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
@@ -155,7 +146,6 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
@@ -217,17 +207,19 @@ endif
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-
 " NeoComplete end
 
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
+call dein#add('Shougo/neosnippet.vim')
+call dein#add('Shougo/neosnippet-snippets')
 " Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 "imap <expr><TAB>
 " \ pumvisible() ? "\<C-n>" :
 " \ neosnippet#expandable_or_jumpable() ?
@@ -241,13 +233,13 @@ if has('conceal')
 endif
 " NeoSnippet end
 
-call neobundle#end()
+call dein#end()
+"call dein#save_state()
+"endif
 
 " Required:
 filetype plugin indent on
+syntax enable
 
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
+" Dein end
 
-" NeoBundle end

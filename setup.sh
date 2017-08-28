@@ -25,17 +25,17 @@ if [ ! `which vim.nox` ]; then
 fi
 # If you have already installed the customized vim environment,
 # this setup is interrupted here.
-[ `which vim` ] && [ `which git` ] && [ -d ~/.vim/bundle/neobundle.vim ] && exit 0
+[ `which vim` ] && [ `which git` ] && [ -d ~/.vim/bundle/repos/github.com/Shougo/dein.vim ] && exit 0
 
 # Copy customized .vimrc to your home directory
 cp -i .vimrc ~ || exit 1
 
 # Install vim-plugins
-mkdir -p ~/.vim/bundle
-if [ ! -d ~/.vim/bundle/neobundle.vim ]; then
-    git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim || exit 1
+if [ ! -d ~/.vim/bundle/repos/github.com/Shougo/dein.vim ]; then
+    mkdir -p ~/.vim/bundle/repos/github.com/Shougo/dein.vim
+    git clone https://github.com/Shougo/dein.vim ~/.vim/bundle/repos/github.com/Shougo/dein.vim || exit 1
 fi
-vim -c NeoBundleInstall
-vim -c NeoBundleUpdate
+vim -c 'call dein#install()'
+vim -c 'call dein#update()'
 
 exit 0
