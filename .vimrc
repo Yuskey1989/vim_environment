@@ -90,6 +90,10 @@ set hidden
 set wildmenu
 set backspace=indent,eol,start
 
+set encoding=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileformats=unix,dos,mac
+
 "括弧を自動補完
 inoremap {{ {}<LEFT>
 inoremap {<ENTER> {}<LEFT><CR><ESC><S-O>
